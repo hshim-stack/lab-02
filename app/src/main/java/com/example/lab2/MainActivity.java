@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         cityAdapter = new ArrayAdapter<>(this, R.layout.content, dataList);
         cityList.setAdapter(cityAdapter);
 
-
+        // objects on screen
         Button addCityButton = findViewById(R.id.add_city_button);
         Button deleteCity = findViewById(R.id.delete_city_button);
         LinearLayout bottomBar = findViewById(R.id.bottom_bar);
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 bottomBar.setVisibility(View.VISIBLE);
             }
         });
+
         // click button
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
                     addCityField.setText(""); // Clear the input field
                     bottomBar.setVisibility(View.GONE); // Hide the bar again after adding it
                 }
+            }
+        });
+        // delete city button logic
+        deleteCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
