@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout bottomBar = findViewById(R.id.bottom_bar);
         Button confirmButton = findViewById(R.id.city_confirm);
         EditText addCityField = findViewById(R.id.add_city_field);
+        final int[] SelectPos = {-1};
 
         // listener
         addCityButton.setOnClickListener(new View.OnClickListener() {
@@ -72,11 +73,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // detect the click
+        cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {  // id = row id  position = pos where it is clicked
+                TextView textView = view.findViewById(R.id.content_view);
+
+                SelectPos[0] = position;
+            }
+        });
+
         // delete city button logic
         deleteCity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (!dataList.isEmpty() && SelectPos[0] != -1) {  // only delete when it is not empty and selected position from city view is not -1
+                    dataList.remove(SelectPos[0]); // Remove the specific index
+                    cityAdapter.notifyDataSetChanged();   // Refresh the UI
+                    SelectPos[0] = -1;
+                }
             }
         });
 
